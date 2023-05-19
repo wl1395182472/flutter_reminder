@@ -23,7 +23,21 @@ void main() {
         .setMockMethodCallHandler(channel, null);
   });
 
-  test('addReminder', () async {
-    expect(await platform.addReminder(), false);
-  });
+  test(
+    'addReminder',
+    () async {
+      expect(
+        await platform.addReminder(
+          title: 'test for addReminder',
+          startTime: DateTime.now()
+              .add(const Duration(minutes: 1))
+              .millisecondsSinceEpoch,
+          endTime: DateTime.now()
+              .add(const Duration(minutes: 2))
+              .millisecondsSinceEpoch,
+        ),
+        false,
+      );
+    },
+  );
 }

@@ -16,7 +16,13 @@ void main() {
 
   testWidgets('addReminder test', (WidgetTester tester) async {
     final FlutterReminder plugin = FlutterReminder();
-    final bool version = await plugin.addReminder();
+    final bool version = await plugin.addReminder(
+      title: 'test for addReminder',
+      startTime:
+          DateTime.now().add(const Duration(minutes: 1)).millisecondsSinceEpoch,
+      endTime:
+          DateTime.now().add(const Duration(minutes: 2)).millisecondsSinceEpoch,
+    );
     // The version string depends on the host platform running the test, so
     // just assert that some non-empty string is returned.
     expect(version, true);

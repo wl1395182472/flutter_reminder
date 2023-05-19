@@ -23,7 +23,21 @@ abstract class FlutterReminderPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<bool> addReminder() {
+  Future<bool> addReminder({
+    int? calendarId,
+    required String title,
+    required int startTime,
+    required int endTime,
+    String? description,
+    String? location,
+    String? duration,
+    String? timezone,
+    int? needReminder,
+    int? isFullDay,
+    String? repeatRule,
+    String? organizer,
+    int? guestsCanModify,
+  }) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 }

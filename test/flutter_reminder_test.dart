@@ -8,7 +8,22 @@ class MockFlutterReminderPlatform
     with MockPlatformInterfaceMixin
     implements FlutterReminderPlatform {
   @override
-  Future<bool> addReminder() => Future.value(false);
+  Future<bool> addReminder({
+    int? calendarId,
+    required String title,
+    required int startTime,
+    required int endTime,
+    String? description,
+    String? location,
+    String? duration,
+    String? timezone,
+    int? needReminder,
+    int? isFullDay,
+    String? repeatRule,
+    String? organizer,
+    int? guestsCanModify,
+  }) =>
+      Future.value(false);
 }
 
 void main() {
@@ -19,11 +34,25 @@ void main() {
     expect(initialPlatform, isInstanceOf<MethodChannelFlutterReminder>());
   });
 
-  test('addReminder', () async {
-    FlutterReminder flutterReminderPlugin = FlutterReminder();
-    MockFlutterReminderPlatform fakePlatform = MockFlutterReminderPlatform();
-    FlutterReminderPlatform.instance = fakePlatform;
+  test(
+    'addReminder',
+    () async {
+      FlutterReminder flutterReminderPlugin = FlutterReminder();
+      MockFlutterReminderPlatform fakePlatform = MockFlutterReminderPlatform();
+      FlutterReminderPlatform.instance = fakePlatform;
 
-    expect(await flutterReminderPlugin.addReminder(), false);
-  });
+      expect(
+        await flutterReminderPlugin.addReminder(
+          title: 'test for addReminder',
+          startTime: DateTime.now()
+              .add(const Duration(minutes: 1))
+              .millisecondsSinceEpoch,
+          endTime: DateTime.now()
+              .add(const Duration(minutes: 2))
+              .millisecondsSinceEpoch,
+        ),
+        false,
+      );
+    },
+  );
 }

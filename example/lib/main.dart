@@ -31,7 +31,15 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion = await _flutterReminderPlugin.addReminder();
+      platformVersion = await _flutterReminderPlugin.addReminder(
+        title: 'test for addReminder',
+        startTime: DateTime.now()
+            .add(const Duration(minutes: 1))
+            .millisecondsSinceEpoch,
+        endTime: DateTime.now()
+            .add(const Duration(minutes: 2))
+            .millisecondsSinceEpoch,
+      );
     } on PlatformException {
       platformVersion = false;
     }
